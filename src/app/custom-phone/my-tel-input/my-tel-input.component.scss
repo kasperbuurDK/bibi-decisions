@@ -1,0 +1,16 @@
+div {
+  display: flex;
+}
+input {
+  border: none;
+  background: none;
+  padding: 0;
+  outline: none;
+  font: inherit;
+  text-align: center;
+  color: currentColor;
+}
+
+input.ng-invalid {
+    border: 2px solid red;
+}
