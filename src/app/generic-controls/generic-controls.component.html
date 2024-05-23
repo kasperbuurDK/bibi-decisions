@@ -21,12 +21,13 @@
     <mat-option [value]="option.value">{{ option.displayValue }}</mat-option>
     }
   </mat-select>
-  } @case (ControlTypes.number) {} @case (ControlTypes.radiogroup) {} @case
-  (ControlTypes.quantity) {<app-quantity
-    [formControlName]="control.name"
-    [increment]="2"
-  ></app-quantity
-  >} } }
+  } 
+  @case (ControlTypes.number) {}
+  @case (ControlTypes.radiogroup) {}
+  @case (ControlTypes.quantity2) {
+    <app-quantity2 [formControlName]="control.name" [errors]="fg.controls[control.name].errors" ></app-quantity2>
+  }
+} }
   <button mat-raised-button color="primary" type="submit">Submit</button>
 </form>
 

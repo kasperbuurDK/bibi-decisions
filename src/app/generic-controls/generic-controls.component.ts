@@ -9,7 +9,8 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { QuantityComponent } from '../custom-controls/quantity/quantity.component';
+import { Quantity2Component } from '../custom-controls/quantity2/quantity2.component';
+import { CannotBeNegativeValidator } from '../custom-controls/custom-control-base/custom-vallidators';
 
 @Component({
   selector: 'app-generic-controls',
@@ -19,7 +20,7 @@ import { QuantityComponent } from '../custom-controls/quantity/quantity.componen
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    QuantityComponent,
+    Quantity2Component,
   ],
   templateUrl: './generic-controls.component.html',
   styleUrl: './generic-controls.component.scss',
@@ -48,18 +49,19 @@ export class GenericControlsComponent implements OnInit {
       { value: 'Two', displayValue: '2' },
     ],
   };
-  quantityControl: GenericFormControl = {
-    label: 'Quantity',
-    type: KnownControlTypes.quantity,
-    name: 'quantity',
+
+  quantity2Control: GenericFormControl = {
+    label: 'Quantity2',
+    type: KnownControlTypes.quantity2,
+    name: 'quantity2',
     initialValue: 0,
-    validators: [],
+    validators: [Validators.max(10), CannotBeNegativeValidator],
   };
 
   @Input({ required: true }) genericControls: GenericFormControl[] = [
     this.stringControl,
     this.selectControl,
-    this.quantityControl,
+    this.quantity2Control,
   ];
   
   ngOnInit() {
@@ -76,7 +78,7 @@ export class GenericControlsComponent implements OnInit {
   }
 
   onClick() {
-    console.log(this.genericControls);
+    console.log(this.fg);
   }
 }
 
@@ -101,4 +103,5 @@ enum KnownControlTypes {
   select,
   radiogroup,
   quantity,
+  quantity2,
 }
