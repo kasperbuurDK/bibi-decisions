@@ -1,0 +1,6 @@
+<div>
+  @for (knownError of knownErorrs; track $index) { @if
+  (errors?.[knownError.code]) {
+  <mat-error> {{ knownError.message }}</mat-error>
+  } }
+</div>

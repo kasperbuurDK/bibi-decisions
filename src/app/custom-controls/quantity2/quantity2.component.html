@@ -3,9 +3,6 @@
   <div>{{ value }}</div>
   <mat-icon (click)="onAdd()">add_box</mat-icon>
 
-  @if (errors?.["cannotBeNegative"]) {
-  <mat-error> Må ikke være negativ </mat-error>
-  } @if (errors?.["max"]) {
-  <mat-error> Må ikke være over {{errors?.["max"].max}} </mat-error>
-  }
+  <app-error-viewer [errors]="errors"/> 
+   
 </div>

@@ -12,7 +12,7 @@ export class CustomControlBaseDirective implements ControlValueAccessor, Validat
   onTouched = () => {}
   touched = false;
   disabled = false;
-  validationFunction: Function = (control: AbstractControl): ValidationErrors[] | null => { return null}
+  validationFunction: Function = (control: AbstractControl): ValidationErrors | null => { return null}
 
 
   markAsTouched() {
