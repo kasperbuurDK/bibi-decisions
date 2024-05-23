@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyTelInputComponent } from './my-tel-input.component';
+import { GenericControlsComponent } from './generic-controls.component';
 
-describe('MyTelInputComponent', () => {
-  let component: MyTelInputComponent;
-  let fixture: ComponentFixture<MyTelInputComponent>;
+describe('FormgroupBaseComponent', () => {
+  let component: GenericControlsComponent;
+  let fixture: ComponentFixture<GenericControlsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MyTelInputComponent]
+      imports: [GenericControlsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(MyTelInputComponent);
+    fixture = TestBed.createComponent(GenericControlsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
