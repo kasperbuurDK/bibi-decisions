@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { CustomControlBaseDirective } from '../custom-control-base/custom-control-base.directive';
+import { CustomControlSingleBaseDirective } from '../custom-control-base/custom-control-single-base.directive';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { ErrorViewerComponent } from '../error-viewer/error-viewer.component';
@@ -26,7 +26,7 @@ import { ErrorViewerComponent } from '../error-viewer/error-viewer.component';
     { provide: NG_VALIDATORS, multi: true, useExisting: Quantity2Component },
   ],
 })
-export class Quantity2Component extends CustomControlBaseDirective {
+export class Quantity2Component extends CustomControlSingleBaseDirective {
   override value: number = 0;
   increment: number = 1;
 

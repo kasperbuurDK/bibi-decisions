@@ -5,7 +5,7 @@ import { AbstractControl, ControlValueAccessor, ValidationErrors, Validator } fr
   selector: 'app-custom-control-base',
   standalone: true,
 })
-export class CustomControlBaseDirective implements ControlValueAccessor, Validator {
+export class CustomControlSingleBaseDirective implements ControlValueAccessor, Validator {
   @Input() errors: ValidationErrors | null = null;
   value: any; 
   onChange = (value: any) => {}
@@ -41,10 +41,9 @@ export class CustomControlBaseDirective implements ControlValueAccessor, Validat
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
     const valResult = this.validationFunction(control);
-    
     return this.validationFunction(control);
   }
-  registerOnValidatorChange?(fn: () => void): void {
+  registerOnValidatorChange(fn: () => void): void {
    console.log("registerOnValidatorChange");
    
   }

@@ -1,1 +1,18 @@
-<p>home works!</p>
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+  <app-person-control
+    [formControl]="fg.controls.navn"
+    [errors]="fg.controls.navn.errors"
+    [parentSubmitted]="submitted"
+  ></app-person-control>
+  <app-address-anguni
+    [formControl]="fg.controls.adress"
+    legend="Address"
+  ></app-address-anguni>
+  <app-quantity2
+    [formControl]="fg.controls.quantity"
+    [errors]="fg.controls.quantity.errors"
+  >
+  </app-quantity2>
+
+  <button mat-raised-button type="submit">SUBMIT</button>
+</form>
