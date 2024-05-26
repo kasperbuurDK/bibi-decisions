@@ -1,51 +1,81 @@
-import { Directive, Input } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, ValidationErrors, Validator } from '@angular/forms';
+import { Directive, Input, OnDestroy, inject } from '@angular/core';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validator,
+} from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: 'app-custom-control-base',
   standalone: true,
 })
-export class CustomControlComplexBaseDirective implements ControlValueAccessor, Validator {
+export class CustomControlComplexBaseDirective
+  implements ControlValueAccessor, Validator, OnDestroy
+{
   @Input() errors: ValidationErrors | null = null;
-  value: any; 
-  onChange = (value: any) => {}
-  onTouched = () => {}
-  touched = false;
-  disabled = false;
-  validationFunction: Function = (control: AbstractControl): ValidationErrors | null => { return null}
+  @Input() legend: string = '';
 
+  fb = inject(FormBuilder);
+  fg: FormGroup<any> = this.fb.group({});
 
-  markAsTouched() {
-    if (!this.touched) {
-     this.onTouched();
-     this.touched = true;
-    }
+  onChangeSubs: Subscription[] = [];
+
+  onTouched: Function = () => {};
+
+  ngOnDestroy() {
+    console.log('destroying CustomControlComplexBaseDirective');
+
+    this.onChangeSubs.forEach((sub) => sub.unsubscribe());
   }
 
-  setValidationFunction(fn: Function) {
-    this.validationFunction = fn;
+  registerOnChange(onChange: any) {
+    const sub = this.fg.valueChanges.subscribe(onChange);
+    this.onChangeSubs.push(sub);
   }
 
   writeValue(value: any): void {
-    this.value = value;
+    if (value) {
+      this.fg.setValue(value, { emitEvent: false });
+    }
   }
-  registerOnChange(onChange: any): void {
-    this.onChange = onChange;
-  }
+
   registerOnTouched(onTouched: any): void {
-   this.onTouched = onTouched;
+    this.onTouched = onTouched;
   }
+
   setDisabledState?(disabled: boolean): void {
-    this.disabled = disabled;
+    if (disabled) {
+      this.fg.disable();
+    } else {
+      this.fg.enable();
+    }
   }
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
-    const valResult = this.validationFunction(control);
-    return this.validationFunction(control);
-  }
-  registerOnValidatorChange(fn: () => void): void {
-   console.log("registerOnValidatorChange");
-   
+    if (this.fg.valid) {
+      return null;
+    }
+
+    let errors: any = {};
+
+    for (const key in this.fg.controls) {
+      const keyString = key.toString();
+      errors = this.addControlErrors(errors, keyString);
+    }
+
+    return errors;
   }
 
+  addControlErrors(allErrors: any, controlName: string) {
+    const errors = { ...allErrors };
+    const controlErrors = this.fg.controls[controlName].errors;
+    if (controlErrors) {
+      errors[controlName] = controlErrors;
+    }
+    return errors;
+  }
 }

@@ -1,22 +1,22 @@
 import { Component, inject } from '@angular/core';
-import { PersonControlComponent } from '../custom-controls/person-control/person-control.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { AddressAnguniComponent } from '../custom-controls/adress-anguni/adress-anguni.component';
 import { Quantity2Component } from '../custom-controls/quantity2/quantity2.component';
 import { CannotBeNegativeValidator } from '../custom-controls/custom-control-base/custom-vallidators';
 import { ErrorViewerComponent } from '../custom-controls/error-viewer/error-viewer.component';
+import { Person2ControlComponent } from '../custom-controls/person2-control/person2-control.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    PersonControlComponent,
     MatButtonModule,
     Quantity2Component,
     AddressAnguniComponent,
-    ErrorViewerComponent
+    ErrorViewerComponent,
+    Person2ControlComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

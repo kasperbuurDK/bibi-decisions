@@ -46,10 +46,10 @@ export class AddressAnguniComponent implements ControlValueAccessor, OnDestroy, 
     }
   }
 
-  registerOnChange(onChange: any) {
-    const sub = this.form.valueChanges.subscribe(onChange);
-    this.onChangeSubs.push(sub);
-  }
+    registerOnChange(onChange: any) {
+      const sub = this.form.valueChanges.subscribe(onChange);
+      this.onChangeSubs.push(sub);
+    }
 
   registerOnTouched(onTouched: Function) {
     this.onTouched = onTouched;

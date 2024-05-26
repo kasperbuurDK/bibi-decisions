@@ -1,9 +1,9 @@
 <form [formGroup]="fg" (ngSubmit)="onSubmit()">
-  <app-person-control
+  <app-person2-control
     [formControl]="fg.controls.navn"
     [errors]="fg.controls.navn.errors"
-    [parentSubmitted]="submitted"
-  ></app-person-control>
+    
+  ></app-person2-control>
   <app-address-anguni
     [formControl]="fg.controls.adress"
     legend="Address"

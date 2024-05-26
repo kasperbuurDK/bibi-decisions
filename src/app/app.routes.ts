@@ -7,13 +7,17 @@ import { TreeComponent } from './tree/tree.component';
 import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { GenericControlsComponent } from './generic-controls/generic-controls.component';
 
+const utilRoutes: Routes = [{ path: '', pathMatch: "full", redirectTo: 'home' }]
 
-export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+export const navBarRoutes: Routes = [
+  { path: 'home',  component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'address', component: AddressFormComponent },
   { path: 'table', component: TableComponent },
   { path: 'tree', component: TreeComponent },
   { path: 'drag-drop', component: DragDropComponent },
-  {path: 'generic-controls', component: GenericControlsComponent},
+  { path: 'generic-controls', component: GenericControlsComponent },
 ];
+
+export const routes: Routes = utilRoutes.concat(navBarRoutes);
+

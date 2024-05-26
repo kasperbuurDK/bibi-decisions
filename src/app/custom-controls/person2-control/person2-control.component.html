@@ -1,0 +1,21 @@
+<fieldset [formGroup]="fg">
+    <legend>{{ legend }}</legend>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="FirstName"
+        formControlName="firstName"
+        (blur)="onTouchedAndChange()"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="SurName"
+        formControlName="surName"
+        (blur)="onTouchedAndChange()"
+      />
+    </mat-form-field>
+    <app-error-viewer [errors]="errors"></app-error-viewer>
+  </fieldset>
+  
